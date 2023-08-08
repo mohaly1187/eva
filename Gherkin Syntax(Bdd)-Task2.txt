@@ -1,0 +1,58 @@
+Feature: Contact-us
+  Background:
+    Given User Open Browser Navigate the website Page Contact-us
+
+    When user Press Contact-us button
+
+  Scenario: User Can Fill Form with valid All Data scenario
+
+    When user input All Valid Data “ name”, ”Email” ,”phone” ,” subject” , “ massage”
+
+    And User click on the "Submit" button
+
+    Then Message successfully submission
+
+  Scenario: User Can Fill Form with Invalid  All Data scenario
+
+    When user Input All InValid Data “ name”, ”Email” ,”phone” ,” subject” , “ massage”
+
+    And User click on the "Submit" button
+
+    Then Message Unsuccessfully submission
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Feature: Contact-us
+  Background:
+    Given User Open Browser Navigate the website Page Contact-us
+
+    When user Press Adverse Event Report button
+
+  Scenario: User Can Fill Form with valid All Data scenario
+
+    When user input All Valid Data "Patient Name", "Patient Gender", "Patient Age", "phone", "email address", "Reporter", "Country", "Product", "Concomitant Medication", "Adverse event description"
+
+    And User click on the "Submit" button
+
+    Then Message successfully submission
+
+  Scenario: User Can Fill Form with Invalid  All Data scenario
+
+    When user Input All InValid Data "Patient Name", "Patient Gender", "Patient Age", "phone", "email address", "Reporter", "Country", "Product", "Concomitant Medication", "Adverse event description"
+
+    And User click on the "Submit" button
+
+    Then Message Unsuccessfully submission
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Feature: Change_Language
+  Background:
+    Given User Open Browser Navigate the website Home Page
+
+  Scenario: User can change the language from Arabic to English or vice versa
+
+    When user Press Change_Language Icon
+
+    And User click on Arabic or English
+
+    Then Language Change successfully
+
+
+
