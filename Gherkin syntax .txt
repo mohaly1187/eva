@@ -1,0 +1,16 @@
+feature: Contact Us Page
+
+  Scenario: Submitting a Contact Us Form Successfully
+  
+    Given The user on the Contact Us page
+	
+	 When the user fill valid data 
+		Name: Marina Nabil
+		Email: marinanabel2023@gmail.com
+		CountryCode: +20
+		Phone: 1100303107
+		Subject: Hello EvaPharma i have some questions ....
+		Message: i need more information about  .......
+	 And Click on the submit button 
+	 
+	 Then The user should see a success message and form is clear
