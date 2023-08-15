@@ -1,1 +1,51 @@
+package newpackage;
+	 import org.openqa.selenium.By;
+	import org.openqa.selenium.WebDriver;
+	import org.openqa.selenium.WebElement;
+	import org.openqa.selenium.chrome.ChromeDriver;
+	import org.testng.annotations.AfterTest;
+	import org.testng.annotations.BeforeTest;
+	import org.testng.annotations.Test;
 
+	public class task4 {
+	    private WebDriver driver;
+
+	    @BeforeTest
+	    public void setUp() {
+	        System.setProperty("webdriver.chrome.driver",  "C:\\Users\\user\\Downloads\\chromedriver_win32(1)\\chromedriver.exe");
+	        driver = new ChromeDriver();
+	    }
+
+	    @Test
+	    public void submitContactForm() {        
+	        driver.get("https://www.evapharma.com/contactus");
+	        
+	        WebElement nameField = driver.findElement(By.id("name"));
+	        WebElement emailField = driver.findElement(By.id("email"));
+	        WebElement phoneField = driver.findElement(By.id("phone"));
+	        WebElement subjectField = driver.findElement(By.id("subject"));
+	        WebElement messageField = driver.findElement(By.id("message"));
+	        
+	        
+	        nameField.sendKeys("omar");
+	        emailField.sendKeys("baidakomar@gmail.com");
+	        phoneField.sendKeys("01144477035");
+	        
+	        subjectField.sendKeys("subject");
+	        messageField.sendKeys("message ");
+	        
+	        WebElement submitButton = driver.findElement(By.id("submit-button"));
+	        submitButton.click();
+	        
+	        
+	       WebElement submitButton = driver.findElement(By.xpath("//input[@type='submit']"));
+	        submitButton.click();
+
+	        System.out.println("Form submitted successfully!");
+	     }
+
+	     @AfterTest
+	    public void tearDown() {
+	        driver.quit();
+	    }
+	}
