@@ -6,11 +6,15 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import javax.lang.model.element.Element;
+import java.time.Duration;
+import java.time.Instant;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         WebDriver driver = new ChromeDriver();
         driver.get("https://evawebsiteprod-staging.azurewebsites.net/contactus");
         driver.manage().window().maximize();
@@ -29,18 +33,18 @@ public class Main {
         Subject_TextBox.sendKeys("Testing Sybject TextBox");
         Message_TextBox.sendKeys("Testing Email TextBox");
         Submit_Button.click();
-        WebElement AlertMessage = driver.findElement(By.xpath("/html/body/div/div[2]/div[1]"));
-        String alertText = AlertMessage.getText();
-        System.out.println(alertText);
-       /** Alert AlertMessage = driver.switchTo().alert();
-        String alertText = AlertMessage.getText();
-        System.out.println(alertText); **/
-        String expectedMessage = "Success! Your message has been sent successfully and one of our team will get back to you soon.";
-        if (alertText.equals(expectedMessage)) {
-            System.out.println("Alert message is correct.");
+        String expectedToastMessage = "Success! Your message has been sent successfully and one of our team will get back to you soon.";
+        Thread.sleep(2000);
+        By toastLocator = By.xpath("/html/body/div/div[2]/div[1]");
+        String actualToastMessage = driver.findElement(toastLocator).getText();
+        System.out.println(actualToastMessage);
+        if (actualToastMessage.contains(expectedToastMessage)) {
+            System.out.println("Happy Scenario TestCase is successfully pass ");
         } else {
-            System.out.println("Alert message is not correct.");
+            System.out.println("Toast message is not correct.");
         }
+
+
 
 
 
