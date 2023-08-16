@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.1 (Python 3.11.4 on win32)" generated="20230718 13:38:55.501" rpa="false" schemaversion="4">
+<suite id="s1" name="Test" source="C:\Users\anton.samir\PycharmProjects\RobotFramework\Automation\test.robot">
+<test id="s1-t1" name="Test1" line="7">
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>https://www.google.com.eg</arg>
+<arg>chrome</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20230718 13:38:55.760" level="INFO">Opening browser 'chrome' to base url 'https://www.google.com.eg'.</msg>
+<msg timestamp="20230718 13:38:55.760" level="INFO">Cannot capture screenshot because no browser is open.</msg>
+<msg timestamp="20230718 13:38:55.760" level="FAIL">TypeError: WebDriver.__init__() got an unexpected keyword argument 'service_log_path'</msg>
+<status status="FAIL" starttime="20230718 13:38:55.759" endtime="20230718 13:38:55.763"/>
+</kw>
+<status status="FAIL" starttime="20230718 13:38:55.759" endtime="20230718 13:38:55.764">TypeError: WebDriver.__init__() got an unexpected keyword argument 'service_log_path'</status>
+</test>
+<status status="FAIL" starttime="20230718 13:38:55.503" endtime="20230718 13:38:55.765"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="0" fail="1" skip="0" id="s1" name="Test">Test</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
