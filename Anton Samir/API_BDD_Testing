@@ -1,0 +1,55 @@
+Feature: Test Data of Laptop REST API testing
+  Background:
+
+  Scenario: Add Fill Form with valid All Data scenario
+    When I input All Valid Data “name”, ”year” ,”price” ,”CPU model” , “Hard disk siz”
+
+    And I Send a POST HTTP request
+
+    Then I receive valid HTTP response code 200
+
+Feature: Test Data of Laptop REST API testing
+  Background:
+
+  Scenario: Add Fill Form with Invalid All Data scenario
+    When I input All Valid Data “Invalid name”, ”year” ,”price” ,”CPU model” , “Hard disk siz”
+
+    And I Send a POST HTTP request
+
+    Then I receive Invalid HTTP response
+Feature: Test Data of Laptop REST API testing
+  Background:
+
+  Scenario: Add Fill Form with Invalid All Data scenario
+    When I input All Valid Data “name”, ”year” ,”Invalid price” ,”CPU model” , “Hard disk siz”
+
+    And I Send a POST HTTP request
+
+    Then I receive Invalid HTTP response
+Feature: Test Data of Laptop REST API testing
+  Background:
+
+  Scenario: Add Fill Form with Invalid All Data scenario
+    When I input All Valid Data “name”, ” year” ,”price” ,”Invalid CPU model” , “Hard disk siz”
+
+    And I Send a POST HTTP request
+
+    Then I receive Invalid HTTP response
+Feature: Test Data of Laptop REST API testing
+  Background:
+
+  Scenario: Add Fill Form with Invalid All Data scenario
+    When I input All Valid Data “name”, ” year” ,”price” ,”CPU model” , “Invalid Hard disk siz”
+
+    And I Send a POST HTTP request
+
+    Then I receive Invalid HTTP response
+Feature: Test Data of Laptop REST API testing
+  Background:
+
+  Scenario: Add Fill Form without Data scenario
+    When I input All Valid Data “name”, ”year” ,”price” ,”CPU model” , “Hard disk siz”
+
+    And I Send a POST HTTP request
+
+    Then I receive Invalid HTTP response
