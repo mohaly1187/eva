@@ -1,0 +1,225 @@
+Scenario: Create a new product with valid data
+
+Given 
+
+   "name": "Apple MacBook Pro 16"
+   "data": 
+      "year": "2019" ,
+      "price": 1849,
+      "CPU model": "Intel Core i9", 
+      "Hard disk size": "1 TB"
+
+When a POST request is made to the endpoint with valid data
+Then the response status code should be 201 
+And the response should contain the created product's details
+
+
+
+Scenario: Create a new product with missing optional fields
+ 
+ Given
+
+   "name": "DELL G3"
+   "data": 
+      "year": "2019" ,
+      "price": 1800,
+      "CPU model": "", 
+      "Hard disk size": ""
+
+When a POST request is made to the endpoint with valid data
+Then the response status code should be 201 
+And the response should contain the created product's details
+
+
+Scenario: Create a new product  with fractional price
+
+
+   "name": "Lenovo V15 G2 Laptop"
+   "data": 
+      "year": "2016" ,
+      "price": 450.99,
+      "CPU model": "", 
+      "Hard disk size": "‎256 GB"
+
+When a POST request is made to the endpoint with a fractional price value
+Then the response status code should be 201 
+And the response should contain the created product's details
+
+
+
+Scenario: Create a new Product with invalid name
+
+ Given
+ "name": " HP"
+   "data": 
+      "year": "2019" ,
+      "price": 1849.99,
+      "CPU model": "", 
+      "Hard disk size": ""
+
+When a POST request is made to the endpoint with a name that is less than 3 characters
+Then the response status code should be 400 
+And the response should contain an error message indicating the name requirement
+
+Scenario: Create a new Product with invalid year
+
+Given
+ "name": "Lenovo IdeaPad Gaming 3 laptop"
+   "data": 
+      "year": "1809" ,
+      "price": 999,99,
+      "CPU model": "‎Intel Core i7", 
+      "Hard disk size": "512 GB"
+
+When a POST request is made to the endpoint with a year that is not within the range 1900-Current Year
+Then the response status code should be 400 
+And the response should contain an error message indicating the valid year range
+
+
+Scenario: Attempt to create a product with invalid data type for year
+
+Given
+ "name": "Laptop ASUS TUF Gaming F15"
+   "data": 
+      "year": "two thousand and nineteen" ,
+      "price": 700,
+      "CPU model": "‎Intel Core i5", 
+      "Hard disk size": "512 GB"
+
+When a POST request is made to the endpoint with a year value that is not an integer
+Then the response status code should be 400 
+And the response should contain an error message indicating the valid data type for the year	  
+
+Scenario: Create a new product with zero price
+
+Given
+ "name": "DELL Vostro 3520 Laptop"
+   "data": 
+      "year": "2021" ,
+      "price": 0,
+      "CPU model": "‎Intel Core i7", 
+      "Hard disk size": "512 GB"
+
+When a POST request is made to the endpoint with a price of 0
+Then the response status code should be 400 
+And the response should contain an error message indicating that the price cannot be zero
+
+
+Scenario: Attempt to create a new product 16 with a negative price
+
+Given
+ "name": "Dell Vostro 3515 Laptop"
+   "data": 
+      "year": "2017" ,
+      "price": -500,
+      "CPU model": "‎Intel Core i5", 
+      "Hard disk size": "512 GB"
+
+When a POST request is made to the endpoint with a negative price value
+Then the response status code should be 400 
+And the response should contain an error message indicating that the price cannot be negative
+
+
+Scenario: Attempt to create a new product Pro 16 with non-numeric price
+
+Given 
+ "name": "Asus Vivobook 15 X1502ZA-BQ005W"
+   "data": 
+      "year": "2021" ,
+      "price": one thousand ,
+      "CPU model": "‎Intel Core i5", 
+      "Hard disk size": "512 GB"
+	  
+When a POST request is made to the endpoint with a non-numeric value for price
+Then the response status code should be 400 
+And the response should contain an error message indicating the required numeric format for the price
+
+Scenario: Create a new Product  with invalid CPU model
+
+Given
+ "name": "Laptop IdeaPad 5 15ITL05"
+   "data": 
+      "year": "2019" ,
+      "price": 889.99,
+      "CPU model": "(11th Intel® Core™ i7-1165G7 - Ram 16GB - Hard 512GB SSD M.2 - GPU NVIDIA® GeForce MX450 2GB - DIsplay 15.6" FHD IPS - Keyboard Backlit - OS DOS -Color Graphite Grey)‎", 
+      "Hard disk size": "512 GB"
+
+When a POST request is made to the endpoint with a CPU model exceeding 50 characters
+Then the response status code should be 400 
+And the response should contain an error message indicating the maximum character limit for the CPU model
+
+
+Scenario: Create a new product with invalid hard disk size
+
+given
+ "name": "HP Victus 15-fa0031dx Gaming Laptop"
+   "data": 
+      "year": "2021" ,
+      "price": 599,99,
+      "CPU model": "‎Intel Core i5", 
+      "Hard disk size": "8GB RAM, 512GB SSD, Nvidia GeForce GTX 1650 4GB GDDR6 Graphics, 15.6" FHD (1920x1080) 144Hz"
+	  
+When a POST request is made to the endpoint with a hard disk size exceeding 20 characters
+Then the response status code should be 400 
+And the response should contain an error message indicating the maximum character limit for the hard disk size
+
+Scenario: Attempt to create a new product with missing required field
+
+Given  
+ "name": ""
+   "data": 
+      "year": "2022" ,
+      "price": 2000,
+      "CPU model": "Intel Core i9", 
+      "Hard disk size": "1 TB"
+
+When a POST request is made to the endpoint without providing the required field
+Then the response status code should be 400 
+And the response should contain error messages for each missing required field
+
+Scenario: Attempt to create a new product with a year greater than the current year
+
+Given 
+ "name": "HP Envy X360 2-IN-1 14-ES0033DX Laptop"
+   "data": 
+      "year": "2024" ,
+      "price": 2200,
+      "CPU model": "‎Intel Core i7", 
+      "Hard disk size": "1 TB"
+	  
+When a POST request is made to the endpoint with a year value greater than the current year
+Then the response status code should be 400 
+And the response should contain an error message indicating that the year cannot be in the future
+
+
+Scenario: Create a new product  with a valid name and year but invalid price format
+
+Given 
+ "name": "Dell G15 5520 Gaming Laptop NG9E5A"
+   "data": 
+      "year": "2021" ,
+      "price": 800dollars,
+      "CPU model": "‎Intel Core i7", 
+      "Hard disk size": "512 GB"
+	  
+When a POST request is made to the endpoint with a price value in an invalid format 
+Then the response status code should be 400 
+And the response should contain an error message indicating the required numeric format for the price
+
+
+Scenario: Attempt to create a new product without specifying the "data" field
+
+Given 
+ "name": ""
+   "data": 
+      "year": "" ,
+      "price": ,
+      "CPU model": "‎", 
+      "Hard disk size": ""
+When a POST request is made to the endpoint without the "data" field in the request body
+Then the response status code should be 400 
+And the response should contain an error message indicating the missing "data" field
+
+
+
+
